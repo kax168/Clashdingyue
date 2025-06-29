@@ -1,10 +1,9 @@
-# === Clash Reality 单节点订阅 ===
-# 可以放多条，这里示例只放 1 条 Reality 节点
+# === Clash Reality 单节点示例 ===
 
 proxies:
-  - name: "Reality-165.154.254.45"
+  - name: "Reality-goodvpn"
     type: vless
-    server: 165.154.254.45
+    server: goodvpn.shop           # ← 入口域名，不要再用裸 IP！
     port: 443
     uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
     network: tcp
@@ -13,14 +12,14 @@ proxies:
     reality-opts:
       public-key: xxk3JnRqnw97oHoRtyUglUGX0IQauMN54iQLbLbham4
       short-id: 6d8de88c
-      server-name: www.cloudflare.com
+      server-name: www.cloudflare.com   # ← Reality 伪装目标，必须和 dest 对应
     client-fingerprint: chrome
 
 proxy-groups:
   - name: "Proxy"
     type: select
     proxies:
-      - Reality-165.154.254.45
+      - Reality-goodvpn
 
 rules:
   - MATCH, Proxy
