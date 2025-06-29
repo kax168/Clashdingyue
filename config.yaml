@@ -1,0 +1,24 @@
+# === Clash Reality 单节点订阅 ===
+# 你可以放多条，示范只放1条
+proxies:
+  - name: "Reality-165.154.254.45"
+    type: vless
+    server: 165.154.254.45
+    port: 443
+    uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
+    network: tcp
+    udp: true
+    tls: true
+    reality-opts:
+      public-key: oP1Awgt9ti9DdyqzqrY0dycPTmu1Cw5yLBO-2ZOUr0w
+      short-id: sdkaixuan370828
+      server-name: www.cloudflare.com
+
+proxy-groups:
+  - name: "AUTO"
+    type: select
+    proxies:
+      - Reality-165.154.254.45
+
+rules:
+  - MATCH, AUTO
