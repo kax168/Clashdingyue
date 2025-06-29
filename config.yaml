@@ -1,23 +1,7 @@
-# === Clash Reality 全分流（GLOBAL分组版 + DNS） ===
-
 proxies:
   - name: "Reality-goodvpn"
     type: vless
     server: goodvpn.shop
-    port: 443
-    uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
-    network: tcp
-    udp: true
-    tls: true
-    reality-opts:
-      public-key: xxk3JnRqnw97oHoRtyUglUGX0IQauMN54iQLbLbham4
-      short-id: 6d8de88c
-      server-name: www.cloudflare.com
-    client-fingerprint: chrome
-
-  - name: "Reality-备用节点"
-    type: vless
-    server: your-backup.goodvpn.shop
     port: 443
     uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
     network: tcp
@@ -34,9 +18,25 @@ proxy-groups:
     type: select
     proxies:
       - Reality-goodvpn
-      - Reality-备用节点
 
 rules:
+  # 国内常见域名直连
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-SUFFIX,baidu.com,DIRECT
+  - DOMAIN-SUFFIX,qq.com,DIRECT
+  - DOMAIN-SUFFIX,weixin.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.com,DIRECT
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,163.com,DIRECT
+  - DOMAIN-SUFFIX,sina.com,DIRECT
+  - DOMAIN-SUFFIX,ifeng.com,DIRECT
+  - DOMAIN-KEYWORD,weibo,DIRECT
+
+  # 国内 IP 段直连（保底）
+  - GEOIP,CN,DIRECT
+
+  # 国外分流继续走 Reality
   - DOMAIN-SUFFIX,google.com,GLOBAL
   - DOMAIN-SUFFIX,youtube.com,GLOBAL
   - DOMAIN-KEYWORD,netflix,GLOBAL
@@ -56,6 +56,8 @@ rules:
   - DOMAIN-KEYWORD,api.openai,GLOBAL
   - DOMAIN-SUFFIX,midjourney.com,GLOBAL
   - DOMAIN-KEYWORD,discord,GLOBAL
+
+  # 兜底：剩下全走 Reality
   - MATCH, GLOBAL
 
 dns:
