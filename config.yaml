@@ -31,7 +31,7 @@ proxies:
     client-fingerprint: chrome
 
 proxy-groups:
-  - name: "Proxy"
+  - name: "Group"
     type: select
     proxies:
       - Reality-goodvpn
@@ -81,4 +81,4 @@ rules:
   - DOMAIN-KEYWORD,discord,Proxy
 
   # 保底全局
-  - MATCH,Proxy
+  - MATCH,Group
