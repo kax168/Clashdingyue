@@ -1,5 +1,6 @@
 # === Clash Reality 单节点订阅 ===
-# 你可以放多条，示范只放1条
+# 可以放多条，这里示例只放 1 条 Reality 节点
+
 proxies:
   - name: "Reality-165.154.254.45"
     type: vless
@@ -14,3 +15,12 @@ proxies:
       short-id: 6d8de88c
       server-name: www.cloudflare.com
     client-fingerprint: chrome
+
+proxy-groups:
+  - name: "Proxy"
+    type: select
+    proxies:
+      - Reality-165.154.254.45
+
+rules:
+  - MATCH, Proxy
