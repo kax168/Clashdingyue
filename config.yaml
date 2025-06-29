@@ -11,7 +11,7 @@ proxies:
     tls: true
     reality-opts:
       public-key: oP1Awgt9ti9DdyqzqrY0dycPTmu1Cw5yLBO-2ZOUr0w
-      short-id: sdkaixuan370828
+      short-id: 6d8de88c
       server-name: www.cloudflare.com
 
 proxy-groups:
