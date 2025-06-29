@@ -10,7 +10,7 @@ proxies:
     udp: true
     tls: true
     reality-opts:
-      public-key: oP1Awgt9ti9DdyqzqrY0dycPTmu1Cw5yLBO-2ZOUr0w
+      public-key: xxk3JnRqnw97oHoRtyUglUGX0IQauMN54iQLbLbham4
       short-id: 6d8de88c
       server-name: www.cloudflare.com
 
