@@ -1,9 +1,9 @@
-# === Clash Reality 单节点示例 ===
+# === Clash Reality 多节点订阅 - 社交+AI+MidJourney 分流版 ===
 
 proxies:
   - name: "Reality-goodvpn"
     type: vless
-    server: goodvpn.shop           # ← 入口域名，不要再用裸 IP！
+    server: goodvpn.shop
     port: 443
     uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
     network: tcp
@@ -12,7 +12,22 @@ proxies:
     reality-opts:
       public-key: xxk3JnRqnw97oHoRtyUglUGX0IQauMN54iQLbLbham4
       short-id: 6d8de88c
-      server-name: www.cloudflare.com   # ← Reality 伪装目标，必须和 dest 对应
+      server-name: www.cloudflare.com
+    client-fingerprint: chrome
+
+  # 可选备用节点
+  - name: "Reality-备用节点"
+    type: vless
+    server: your-backup.goodvpn.shop
+    port: 443
+    uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
+    network: tcp
+    udp: true
+    tls: true
+    reality-opts:
+      public-key: xxk3JnRqnw97oHoRtyUglUGX0IQauMN54iQLbLbham4
+      short-id: 6d8de88c
+      server-name: www.cloudflare.com
     client-fingerprint: chrome
 
 proxy-groups:
@@ -20,6 +35,50 @@ proxy-groups:
     type: select
     proxies:
       - Reality-goodvpn
+      - Reality-备用节点
 
 rules:
-  - MATCH, Proxy
+  # Google / YouTube
+  - DOMAIN-SUFFIX,google.com,Proxy
+  - DOMAIN-SUFFIX,youtube.com,Proxy
+
+  # Netflix
+  - DOMAIN-KEYWORD,netflix,Proxy
+
+  # Apple
+  - DOMAIN-SUFFIX,apple.com,Proxy
+
+  # X（Twitter）
+  - DOMAIN-SUFFIX,x.com,Proxy
+  - DOMAIN-KEYWORD,twitter,Proxy
+
+  # TikTok
+  - DOMAIN-SUFFIX,tiktok.com,Proxy
+
+  # Telegram
+  - DOMAIN-SUFFIX,telegram.org,Proxy
+  - DOMAIN-KEYWORD,t.me,Proxy
+
+  # Facebook
+  - DOMAIN-SUFFIX,facebook.com,Proxy
+  - DOMAIN-KEYWORD,fbcdn,Proxy
+
+  # Discord
+  - DOMAIN-SUFFIX,discord.com,Proxy
+  - DOMAIN-KEYWORD,discord.gg,Proxy
+
+  # Instagram
+  - DOMAIN-SUFFIX,instagram.com,Proxy
+
+  # ChatGPT / OpenAI
+  - DOMAIN-SUFFIX,openai.com,Proxy
+  - DOMAIN-KEYWORD,chat.openai,Proxy
+  - DOMAIN-KEYWORD,api.openai,Proxy
+
+  # MidJourney
+  - DOMAIN-SUFFIX,midjourney.com,Proxy
+  # MidJourney 也会用 Discord
+  - DOMAIN-KEYWORD,discord,Proxy
+
+  # 保底全局
+  - MATCH,Proxy
