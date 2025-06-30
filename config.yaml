@@ -9,7 +9,7 @@ proxies:
     tls: true
     reality-opts:
       public-key: XqZeXLwbJpnuhmlYn5IIob7LQzCzvk0-qPDSUXEOrxA
-      short-id: 6d8de88c
+      short-id: abcdef12
       server-name: www.bing.com
     client-fingerprint: chrome
 
