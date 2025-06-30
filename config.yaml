@@ -9,8 +9,8 @@ proxies:
     tls: true
     reality-opts:
       public-key: XqZeXLwbJpnuhmlYn5IIob7LQzCzvk0-qPDSUXEOrxA
-      short-id: 12345678
-      server-name: www.cloudflare.com
+      short-id: 6d8de88c
+      server-name: www.bing.com
     client-fingerprint: chrome
 
 proxy-groups:
