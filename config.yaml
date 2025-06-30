@@ -20,7 +20,7 @@ proxy-groups:
       - Reality-goodvpn
 
 rules:
-  # 国内常见域名直连
+  # 国内直连规则
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-SUFFIX,baidu.com,DIRECT
   - DOMAIN-SUFFIX,qq.com,DIRECT
@@ -30,13 +30,10 @@ rules:
   - DOMAIN-SUFFIX,tmall.com,DIRECT
   - DOMAIN-SUFFIX,163.com,DIRECT
   - DOMAIN-SUFFIX,sina.com,DIRECT
-  - DOMAIN-SUFFIX,ifeng.com,DIRECT
   - DOMAIN-KEYWORD,weibo,DIRECT
-
-  # 国内 IP 段直连（保底）
   - GEOIP,CN,DIRECT
 
-  # 国外分流继续走 Reality
+  # 国外敏感站走 Reality
   - DOMAIN-SUFFIX,google.com,GLOBAL
   - DOMAIN-SUFFIX,youtube.com,GLOBAL
   - DOMAIN-KEYWORD,netflix,GLOBAL
@@ -57,7 +54,7 @@ rules:
   - DOMAIN-SUFFIX,midjourney.com,GLOBAL
   - DOMAIN-KEYWORD,discord,GLOBAL
 
-  # 兜底：剩下全走 Reality
+  # 保底
   - MATCH, GLOBAL
 
 dns:
@@ -70,3 +67,6 @@ dns:
   fallback:
     - https://1.0.0.1/dns-query
     - https://8.8.4.4/dns-query
+
+hosts:
+  goodvpn.shop: 165.154.254.45
