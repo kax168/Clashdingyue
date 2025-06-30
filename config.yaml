@@ -14,59 +14,10 @@ proxies:
     client-fingerprint: chrome
 
 proxy-groups:
-  - name: "GLOBAL"
+  - name: "Proxy"
     type: select
     proxies:
       - Reality-goodvpn
 
 rules:
-  # 国内直连规则
-  - DOMAIN-SUFFIX,cn,DIRECT
-  - DOMAIN-SUFFIX,baidu.com,DIRECT
-  - DOMAIN-SUFFIX,qq.com,DIRECT
-  - DOMAIN-SUFFIX,weixin.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba.com,DIRECT
-  - DOMAIN-SUFFIX,taobao.com,DIRECT
-  - DOMAIN-SUFFIX,tmall.com,DIRECT
-  - DOMAIN-SUFFIX,163.com,DIRECT
-  - DOMAIN-SUFFIX,sina.com,DIRECT
-  - DOMAIN-KEYWORD,weibo,DIRECT
-  - GEOIP,CN,DIRECT
-
-  # 国外敏感站走 Reality
-  - DOMAIN-SUFFIX,google.com,GLOBAL
-  - DOMAIN-SUFFIX,youtube.com,GLOBAL
-  - DOMAIN-KEYWORD,netflix,GLOBAL
-  - DOMAIN-SUFFIX,apple.com,GLOBAL
-  - DOMAIN-SUFFIX,x.com,GLOBAL
-  - DOMAIN-KEYWORD,twitter,GLOBAL
-  - DOMAIN-SUFFIX,tiktok.com,GLOBAL
-  - DOMAIN-SUFFIX,telegram.org,GLOBAL
-  - DOMAIN-KEYWORD,t.me,GLOBAL
-  - DOMAIN-SUFFIX,facebook.com,GLOBAL
-  - DOMAIN-KEYWORD,fbcdn,GLOBAL
-  - DOMAIN-SUFFIX,discord.com,GLOBAL
-  - DOMAIN-KEYWORD,discord.gg,GLOBAL
-  - DOMAIN-SUFFIX,instagram.com,GLOBAL
-  - DOMAIN-SUFFIX,openai.com,GLOBAL
-  - DOMAIN-KEYWORD,chat.openai,GLOBAL
-  - DOMAIN-KEYWORD,api.openai,GLOBAL
-  - DOMAIN-SUFFIX,midjourney.com,GLOBAL
-  - DOMAIN-KEYWORD,discord,GLOBAL
-
-  # 保底
-  - MATCH, GLOBAL
-
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  enhanced-mode: fake-ip
-  nameserver:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-  fallback:
-    - https://1.0.0.1/dns-query
-    - https://8.8.4.4/dns-query
-
-hosts:
-  goodvpn.shop: 165.154.254.45
+  - MATCH, Proxy
