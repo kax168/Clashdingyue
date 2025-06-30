@@ -8,8 +8,8 @@ proxies:
     udp: true
     tls: true
     reality-opts:
-      public-key: 5Aa6dRt8x7nhs3N2V7_L1PTJYdseOCUlPbvEqX6vMGA
-      short-id: 6d8de88c
+      public-key: kP81xgmamEkUT4WdSPniEgNED7f7bAASkwxJeq-bAmU
+      short-id: 12345678
       server-name: www.cloudflare.com
     client-fingerprint: chrome
 
