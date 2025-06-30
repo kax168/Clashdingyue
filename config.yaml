@@ -12,12 +12,3 @@ proxies:
       short-id: abcdef12
       server-name: www.bing.com
     client-fingerprint: chrome
-
-proxy-groups:
-  - name: "Proxy"
-    type: select
-    proxies:
-      - Reality-goodvpn
-
-rules:
-  - MATCH, Proxy
