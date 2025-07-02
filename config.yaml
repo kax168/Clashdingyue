@@ -1,23 +1,17 @@
 proxies:
-  - name: "Reality-goodvpn"
-    type: vless
+  - name: "Trojan-goodvpn"
+    type: trojan
     server: goodvpn.shop
     port: 8443
-    uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
-    network: tcp
+    password: "12345678"
+    sni: goodvpn.shop
     udp: true
-    tls: true
-    reality-opts:
-      public-key: XqZeXLwbJpnuhmlYn5IIob7LQzCzvk0-qPDSUXEOrxA
-      short-id: abcdef12
-      server-name: www.bing.com
-    client-fingerprint: chrome
 
 proxy-groups:
   - name: "Proxy"
     type: select
     proxies:
-      - Reality-goodvpn
+      - Trojan-goodvpn
 
 rules:
   - MATCH, Proxy
