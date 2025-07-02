@@ -1,31 +1,8 @@
-proxies:
-  - name: "Trojan-goodvpn"
-    type: trojan
-    server: goodvpn.shop
-    port: 8443
-    password: "12345678"
-    sni: goodvpn.shop
-    udp: true
-
-proxy-groups:
-  - name: "Proxy"
-    type: select
-    proxies:
-      - Trojan-goodvpn
-
-rules:
-  - MATCH, Proxy
-
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  enhanced-mode: fake-ip
-  nameserver:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-  fallback:
-    - https://1.0.0.1/dns-query
-    - https://8.8.4.4/dns-query
-
-hosts:
-  goodvpn.shop: 165.154.254.45
+- name: "Trojan-Go-goodvpn"
+  type: trojan
+  server: goodvpn.shop
+  port: 8443
+  password: "12345678"
+  sni: goodvpn.shop
+  udp: true
+  skip-cert-verify: false
