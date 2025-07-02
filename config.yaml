@@ -2,7 +2,7 @@ proxies:
   - name: "Reality-goodvpn"
     type: vless
     server: goodvpn.shop
-    port: 443
+    port: 8443
     uuid: 70fd51f3-67cd-4194-a252-dc091bf12aaf
     network: tcp
     udp: true
