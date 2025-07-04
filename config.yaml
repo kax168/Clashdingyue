@@ -11,6 +11,7 @@ proxies:
     port: 443
     uuid: ab120ee4-f4c4-4730-9465-a573ebf6b945
     network: tcp
+    security: reality
     reality-opts:
       public-key: 3YuSPJ8VxTbReT3kXe-fYkfe2RlVWMrE93ZTfzNJKWE
       short-id: 3f91b54a12655af1
