@@ -7,7 +7,7 @@ log-level: info
 proxies:
   - name: "Reality-Node-1"
     type: vless
-    server: 1.2.3.4
+    server: 3.129.194.204
     port: 443
     uuid: ab120ee4-f4c4-4730-9465-a573ebf6b945
     network: tcp
