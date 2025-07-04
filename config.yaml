@@ -4,8 +4,12 @@ allow-lan: true
 mode: Rule
 log-level: info
 
+dns:
+  enable: true
+  ipv6: false
+
 proxies:
-  - name: "Reality-Node-1"
+  - name: "Reality-Node-Google"
     type: vless
     server: 3.129.194.204
     port: 443
@@ -15,7 +19,7 @@ proxies:
     reality-opts:
       public-key: 3YuSPJ8VxTbReT3kXe-fYkfe2RlVWMrE93ZTfzNJKWE
       short-id: 3f91b54a12655af1
-      server-name: www.cloudflare.com
+      server-name: www.google.com
     flow: xtls-rprx-vision
     udp: true
 
@@ -23,7 +27,7 @@ proxy-groups:
   - name: "🚀 节点选择"
     type: select
     proxies:
-      - Reality-Node-1
+      - Reality-Node-Google
 
   - name: "🎯 分流"
     type: select
