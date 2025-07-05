@@ -1,50 +1,31 @@
-port: 7890
-socks-port: 7891
-allow-lan: true
-mode: Rule
-log-level: info
+# Clash 配置文件 - 为 vpn.goodvpn.shop 定制
+# 版本: 2025-07-05
 
+# proxies部分：定义您的服务器节点
 proxies:
-  - name: "Reality-Node-1"
+  - name: "AWS-VLESS-节点"      # 您可以在Clash客户端中看到这个名字
     type: vless
-    server: 3.129.194.204
+    server: vpn.goodvpn.shop
     port: 443
-    uuid: ab120ee4-f4c4-4730-9465-a573ebf6b945
-    network: tcp
-    security: reality
-    reality-opts:
-      public-key: 3YuSPJ8VxTbReT3kXe-fYkfe2RlVWMrE93ZTfzNJKWE
-      short-id: 3f91b54a12655af1
-      server-name: www.cloudflare.com
-    flow: xtls-rprx-vision
-    udp: true
+    uuid: e505741c-76df-487e-b1a0-d78224ccfbfc
+    cipher: auto
+    tls: true
+    servername: vpn.goodvpn.shop
+    network: ws
+    ws-opts:
+      path: "/vless-new"
+      headers:
+        Host: vpn.goodvpn.shop
 
+# proxy-groups部分：定义客户端中的节点选择策略
 proxy-groups:
-  - name: "🚀 节点选择"
+  - name: "🚀 节点选择"           # 这是在Clash里显示的总策略名
     type: select
     proxies:
-      - Reality-Node-1
+      - "AWS-VLESS-节点"     # 这里的名字必须和上面proxies部分里的name完全一致
+      - DIRECT             # DIRECT代表直连，即不通过代理
 
-  - name: "🎯 分流"
-    type: select
-    proxies:
-      - "🚀 节点选择"
-      - DIRECT
-
+# rules部分：定义流量规则
 rules:
-  - DOMAIN-SUFFIX,youtube.com,🎯 分流
-  - DOMAIN-SUFFIX,google.com,🎯 分流
-  - DOMAIN-SUFFIX,facebook.com,🎯 分流
-  - DOMAIN-SUFFIX,tiktok.com,🎯 分流
-  - DOMAIN-SUFFIX,openai.com,🎯 分流
-  - DOMAIN-SUFFIX,chatgpt.com,🎯 分流
-  - DOMAIN-SUFFIX,twitter.com,🎯 分流
-  - DOMAIN-SUFFIX,x.com,🎯 分流
-  - DOMAIN-SUFFIX,instagram.com,🎯 分流
-  - DOMAIN-SUFFIX,telegram.org,🎯 分流
-  - DOMAIN-SUFFIX,t.me,🎯 分流
-  - DOMAIN-SUFFIX,discord.com,🎯 分流
-  - DOMAIN-SUFFIX,netflix.com,🎯 分流
-  - DOMAIN-SUFFIX,github.com,🎯 分流
-  - GEOIP,CN,DIRECT
-  - MATCH,🎯 分流
+  - GEOIP,CN,DIRECT          # 来自中国大陆的IP地址走直连
+  - MATCH,🚀 节点选择        # 其他所有流量都走“节点选择”这个策略
