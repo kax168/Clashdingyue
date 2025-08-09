@@ -1,0 +1,59 @@
+# Clash 配置示例，包含3个VLESS节点和一个节点组
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: false
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:9090
+
+proxies:
+  - name: "XTLS_wulabing-yisu.goodvpn.shop"
+    type: vless
+    server: yisu.goodvpn.shop
+    port: 443
+    uuid: f233f5af-7238-4ed4-803f-7b18a4f2c252
+    flow: xtls-rprx-vision
+    tls: true
+    network: tcp
+    skip-cert-verify: true
+    # XTLS 需要指定 xtls 作为底层安全协议
+    xtls: true
+
+  - name: "WS_TLS_wulabing-qingliang.goodvpn.shop"
+    type: vless
+    server: qingliang.goodvpn.shop
+    port: 443
+    uuid: 2fad7bbd-c407-48c5-a27b-0c0eb59c9271
+    tls: true
+    network: ws
+    ws-opts:
+      path: "/f7d32f74e/"
+      headers:
+        Host: qingliang.goodvpn.shop
+    skip-cert-verify: true
+
+  - name: "WS_TLS_wulabing-racknerd.goodvpn.shop"
+    type: vless
+    server: racknerd.goodvpn.shop
+    port: 443
+    uuid: b537b7a5-faef-45b9-bda0-31831b643803
+    tls: true
+    network: ws
+    ws-opts:
+      path: "/e0a1e/"
+      headers:
+        Host: racknerd.goodvpn.shop
+    skip-cert-verify: true
+
+proxy-groups:
+  - name: "VLESS Group"
+    type: select
+    proxies:
+      - "XTLS_wulabing-yisu.goodvpn.shop"
+      - "WS_TLS_wulabing-qingliang.goodvpn.shop"
+      - "WS_TLS_wulabing-racknerd.goodvpn.shop"
+
+rules:
+  - MATCH, VLESS Group
